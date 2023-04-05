@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+   body{
+     margin: 0px;   
+     padding: 0px;
+    }
+    table,
+    th,
+    td {
+        border: 2px solid black;
+        color:white;
+        padding: 10px;
+    }
+    #Table{
+        margin-top: 20px;
+        {{!-- padding: 20px; --}}
+       
+    }
+   
+    #availablef #Price{
+        margin: 20px;
+       
+      
+    }
+    .container{
+        margin: 20px;
+       
+    }
+    h1{
+         text-align: center;
+  text-decoration: solid;
+  color: white;
+  background-color: #008E97;
+        
+    }
+    h3{
+         text-align: center;
+  color: white;
+  background-color: #008E97;
+  {{!-- text-decoration: solid; --}}
+        
+    }
+    #form{
+        
+        display: flex;
+        justify-content:
+       space-around
+
+    }
+
+</style>
+
+<body>
+<div class="container">
+    <h1>List Of Products</h1>
+
+<h3  >FILTERS</h3>
+     <form  action="/gettotalproducts/filters" , method="POST" id="form" >
+        <div><label for="availablef">Availability :  </label>
+    <input type="text" name="availablef" id="availablef"></div>
+
+        <div><label for="Price">Price :  </label>
+    <input type="number" name="Price" id="Price"></div>
+    <div><button  >Submit</button></div>   
+  
+
+</form >
+    
+    <table style="width: 100%; height: 100%;" id="Table" cell-padding="5px"  border="1"  >
+      <th id="1" >NAME</th>  
+      <th  id="2">PRICE</th>  
+      <th  id="3">AVAILABILITY</th>  
+      
+    </table>
+
+</div>
+   
+
+
+
+    
+
+  
+    <script>
+
+        
+        const Table = document.getElementById("Table")
+        const Table2 = document.getElementById("Table2")
+        const one = document.getElementById("1")
+        const Two = document.getElementById("2")
+        const Three = document.getElementById("3")
+        const availablef = document.getElementById("availablef")
+        const Price = document.getElementById("Price")
+
+        const availablefdata = availablef.value;
+        console.log(availablefdata)
+ const renderDataInTheTable = (data) => {
+                    data.forEach((element) => {
+                        const tr = document.createElement("tr");
+                        const td = document.createElement("td");
+                        const td1 = document.createElement("td");
+                        const td2 = document.createElement("td");
+                        td.innerText = element.name;    
+                        td1.innerText = element.price;    
+                        td2.innerText = element.available;    
+                        
+                        tr.appendChild(td);
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        Table.appendChild(tr);
+                        Table.style.borderCollapse = "collapse";
+                        Table.style.backgroundColor = "#008E97  ";
+                  
+                    });
+                }
+      
+ const renderInTheTable = (data) => {
+                    data.forEach((element) => {
+                        const tr = document.createElement("tr");
+                        const td = document.createElement("td");
+                        const td1 = document.createElement("td");
+                        const td2 = document.createElement("td");
+                        td.innerText = element.name;    
+                        td1.innerText = element.price;    
+                        td2.innerText = element.available;    
+                        
+                        tr.appendChild(td);
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        Table2.appendChild(tr);
+                        Table2.style.borderCollapse = "collapse";
+                        Table2.style.backgroundColor = "#008E97  ";
+                  
+                    });
+                }
+      
+       
+const a = document.getElementById("1")
+        const getinfo = async (event) => {
+
+            
+            try {
+                let url = `http://localhost:3000/ProductData`
+                const response = await fetch(url)
+                const data = await response.json();
+               
+
+
+            let array = []
+            let array2 = []
+let i=0;
+                              
+                               
+ await data.forEach(element=>{
+                        if(element.available==='{{availablef}}' && element.price>='{{Price}}'){
+                              array[i] = element
+                           
+                                                   }
+                              
+                             else{
+                                array2[i] = element
+                             }
+                              i++                                                   
+           
+        }
+     
+        )
+       
+if(array.length===0){
+    renderDataInTheTable(data)}
+    else if(array.length!=0){
+            renderDataInTheTable(array)}
+            {{!-- else{
+
+
+            } --}}
+             
+
+ 
+              
+
+
+
+
+            } catch (error) {
+                console.log("please Enter The Valid Things"  );
+             } }
+
+
+        getinfo();
+        
+       
+    </script>
+</body>
+
+</html>

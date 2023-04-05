@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Delete Product to Database</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <style>
+    .bg-primary {
+    background-color: #008E97!important;
+}
+.btn-primary {
+    color: #fff;
+      background-color: #008E97!important;
+    border-color:#007279;
+}
+.form-contro{
+  border: 1px solid #00aab1;
+}
+    @keyframes example {
+  from {background-color: red; scale: (0 , 1); }
+  
+  to {background-color:red; scale: (1 , 1);}
+}
+    #delete {
+    width: 20mm;
+    padding-top: 1mm;
+    padding-bottom: 1mm;
+    padding-left: 4mm;
+    padding-right: 2mm;
+    color: white;
+    background-color:#008E97;
+    text-decoration: none;
+    margin-left:11px;
+    border: none;
+    display: flex;
+    height: 34px;
+    border-radius: 0.25rem;
+}
+
+#delete:hover {
+
+    background-color:red;
+    color:;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+  </style>
+  <body>
+    <div class="container mt-5">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h3 class="card-title "    >Delete Product </h3>
+        </div>
+        <div class="card-body">
+          <form action="/deleteproduct" method="POST">
+            <div class="form-group">
+              <label for="name">Product Name:</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+          
+            <button     id="delete" onclick=Delete() >Delete</button>
+            {{!-- <button type="submit"  class="btn btn-primary" id="delete" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='#007bff'">Delete</button> --}}
+          </form>
+        </div>
+      </div>
+    </div>
+<script>
+  function Delete(){
+    alert("Sure! You Want To Delete")
+  }
+</script>
+
+  </body>
+</html>

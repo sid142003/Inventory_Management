@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup Form</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+      max-width: 500px;
+      padding: 40px;
+      background-color: #fff;
+      box-shadow: 0px 0px 4px 1px rgb(26, 241, 255);
+      border-radius: 5px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: bold;
+      color: #008E97;
+    }
+    label {
+      font-weight: bold;
+      color:#008E97;
+    }
+    .form-control:focus {
+      border-color:#007279;
+      box-shadow: none;
+    }
+    .btn-primary {
+      background-color: #008E97;
+      border-color: #007279;
+    }
+    .btn-primary:hover {
+      background-color:#00aab5;
+      border-color:#007279;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <form action="/login" method="POST">
+        <div class="formgroup">
+        <label for="emailnew">Email address</label>
+        <input type="email" class="form-control" id="emailnew"  name="emailnew" placeholder="Enter your email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="passwordnew">Password</label>
+        <input type="password" class="form-control" id="passwordnew" name="passwordnew" placeholder="Enter your password">
+      </div>
+
+      
+      <button type="submit" class="btn btn-primary btn-block">Login</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Order Placement</title>
+	<!-- Bootstrap CSS -->
+	{{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<!-- Custom CSS -->
+	<style>
+	 body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+      max-width: 500px;
+      padding: 40px;
+      background-color: #fff;
+        box-shadow: 0px 0px 4px 1px rgb(26, 241, 255);
+      border-radius: 5px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: bold;
+      color: #008E97;
+    }
+    label {
+      font-weight: bold;
+      color: #008E97;
+    }
+    .form-control:focus {
+      border-color:#007279;
+      box-shadow: none;
+    }
+    .btn-primary {
+      background-color: #008E97;
+      border-color: #007279;
+    }
+    .btn-primary:hover {
+      background-color: #00aab5;
+      border-color: #007279;
+    }
+	</style>
+</head>
+<body>
+
+
+ <div class="container">
+    <h1>Place Order</h1>
+    
+    <form action="/PlaceOrder" method="POST">
+      <div class="form-group">
+        <label for="name"> Product Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name" name="name">
+      </div>
+      
+      <div class="form-group">
+						<label for="quantity">Quantity:</label>
+						<input type="number" class="form-control" name="quantity" id="quantity" placeholder="Enter quantity">
+					</div>
+					<div class="formg-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email"  name="email" placeholder="Enter your email">
+       
+      </div>
+     
+					
+					<div class="form-group">
+						<label for="address">Shipping Address:</label>
+						<textarea class="form-control" rows="3"   name="address" id="address"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block">Place Order</button>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- 	
+					<button type="submit" class="btn btn-block">Place Order</button>
+				</form>
+			</div>
+		</div>
+	</div> --}}
+	
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
