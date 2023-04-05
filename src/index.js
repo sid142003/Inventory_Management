@@ -1,6 +1,6 @@
 const express = require("express");
 const nodemailer = require('nodemailer')
-const {EMAIL, PASSWORD} = require('../src/env')
+const {EMAIL, PASSWORD} = require('./env')
 const mailgen=require('mailgen')
 
 const jwt=require("jsonwebtoken")
