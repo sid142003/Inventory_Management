@@ -23,6 +23,11 @@ const schema=new mongoose.Schema({
         required:true,
         maxLength:10,
         minLength:5
+    },
+    radiobtn:{
+         type:String,
+        required:true,
+       
     }
 
 })

@@ -30,7 +30,7 @@ h1{
         <th >Price </th>
       </tr>
       <tr>
-        <th id="a">A</th>
+        <th id="a"></th>
         <th id="b"></th>
         <th id="c"></th>
       </tr>
@@ -46,10 +46,10 @@ const c=document.getElementById("c")
       const getinfo = async (event)=>{
         
     try {
-            let url=`http://localhost:3000/ProductData`
+            let url=`http://siddhant:3000/ProductData`
             const  response = await fetch(url)
             const data=await response.json();
-          {{!-- console.log(data) --}}
+          console.log(data)
             await data.forEach(element=>{
                         if(element.name==='{{Sname}}' ){
                                a.innerText=element.name

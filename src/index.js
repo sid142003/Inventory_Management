@@ -7,13 +7,15 @@ const jwt=require("jsonwebtoken")
 const bcrypt = require('bcryptjs')
 const cookie_parser=require('cookie-parser')
 let alert = require('alert')
-
+// const popups=require('popups')
 const app = express()
 const port = 3000
 const path = require("path");
 const hbs = require("hbs");
 const Data = require("./model/model");
 const addproduct=require("./model/addproduct")
+const orderdetails=require("./model/orderdetails");
+const { log } = require("console");
 // const editproduct=require("./model/")
 
 
@@ -69,7 +71,8 @@ app.post("/entry", async (req, res) => {
                 email: req.body.email,
                 password: req.body.password,
               
-                conf_password: req.body.conf_password
+                conf_password: req.body.conf_password,
+                radiobtn: req.body.radiobtn
 
             });
          res.cookie("Sname", Sname ,{
@@ -105,17 +108,34 @@ app.post("/entry", async (req, res) => {
 app.post("/login", async (req, res) => {
     try {
         const emailnew = req.body.emailnew;
-        
         const password = req.body.passwordnew;
+
+
+// const alluserdetails=await Data.find()
         const useremail = await Data.findOne({ email: emailnew })
+        const radiotype = useremail.radiobtn;
+
+// let arr=[];
+// let i=0;
+    // alluserdetails.forEach(element => {
+    //     if(element.radiobtn==="Supplier"){
+    //         arr[i]=element.email;
+    //         i++;
+    //     }
+            
+    //     });
+
+        
+        // console.log(arr);
+        const OrderDetails= await orderdetails.findOne({email:emailnew})
+
     const  ismatch = await  bcrypt.compare(password, useremail.password)
     
         const Sname = useremail.name    
-        
         res.cookie("Sname",Sname)
 
         if (ismatch) {
-            res.render("mainpage2" , {Sname} )
+            res.render("mainpage2" , {Sname ,radiotype} )
         } else {
             res.send("Password Not Matching")
         }
@@ -176,6 +196,30 @@ app.post("/addproduct", async (req, res) => {
 
             alert(" Data Added Successfully")
             res.render("mainpage2" ,{Cname} )
+    } catch (error) {
+        res.send(error);
+    }
+})
+
+app.post("/PlaceOrder", async (req, res) => {
+    const Pname = await req.cookies.Sname;
+    // const pname=req.cookie(Sname)
+    try {
+
+       
+            const addData = new orderdetails({
+            name: req.body.name,
+               quantity:req.body.quantity,
+               email:req.body.email,
+               address:req.body.address
+
+            
+            });
+
+            const postData = await addData.save();
+
+            alert(" Order Placed Successfully")
+            res.render("mainpage2" ,{Pname} )
     } catch (error) {
         res.send(error);
     }
@@ -260,7 +304,11 @@ app.post("/deleteproduct",  async (req,res)=>{
     
 })
 
-
+app.get("/orderdetails", async (req, res) => {
+    const UserData = await orderdetails.find()
+    // console.log(UserData);
+    res.send(UserData)
+})
 app.get("/ProductData" , async (req,res)=>{
 const UserData=await addproduct.find()
 res.send(UserData)
@@ -345,7 +393,7 @@ app.post("/gettotalproducts/filters", async (req, res) => {
   const total = await addproduct.find({ available : availablef });
   
 
-let arr=[searchedInput , total]
+// let arr=[searchedInput , total]
   res.render("gettotalproducts", {availablef , Price })
 //   if (searchedInput) {
 //   }

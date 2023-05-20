@@ -99,7 +99,25 @@
        
 <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
   <a class="navbar-brand" href="#">
-    
+
+   
+
+ 
+
+
+
+   
+   
+
+
+
+
+
+
+   
+  
+
+{{Pname}}
     
 {{Sname}}
 {{Cname}}
@@ -156,12 +174,16 @@
         </div>
     </nav>
 
+
+
+
+
     <main class="container my-4">
         <div class="row">
             <div class="col-lg-8">
                 <div class="card mb-4">
                     <div class="card-header">Dashboard</div>
-                    <div class="card-body">
+                    <div class="card-body" id="desc">
                         <p>Welcome to the inventory management system!</p>
                         <p>Here, you can manage all your products, orders, customers, and reports.</p>
                     </div>
@@ -170,11 +192,11 @@
                 <div class="card mb-4">
                     <div class="card-header">Products</div>
                     <div class="card-body">
-                        <p>Here, you can manage your products:</p>
+                        <p id="ownerpr">Here, you can manage your products:</p>
                         <ul>
-                            <li><a href="/addproduct">Add a new product</a></li>
-                            <li><a href="/editproduct">Edit a product</a></li>
-                            <li><a href="/deleteproduct">Delete a product</a></li>
+                            <li id="addproduct"><a href="/addproduct">Add a new product</a></li>
+                            <li id="editproduct" ><a href="/editproduct">Edit a product</a></li>
+                            <li id="deleteproduct"><a href="/deleteproduct">Delete a product</a></li>
                              <li><a href="/gettotalproducts">List all products</a></li>
                         </ul>
                     </div>
@@ -213,12 +235,11 @@
                 <div class="card mb-4">
                     <div class="card-header">Recent Orders</div>
                     <div class="card-body">
-                        <ul>
-                            <li><a href="#">Order #001 - March 1, 2023</a></li>
-                            <li><a href="#">Order #002 - March 2, 2023</a></li>
-                            <li><a href="#">Order #003 - March 3, 2023</a></li>
-                            <li><a href="#">Order #004 - March 4, 2023</a></li>
-                            <li><a href="#">Order #005 - March 5, 2023</a></li>
+                        <ul id="ult">
+                           <div id="1"></div>
+                           <div id="2"></div>
+                          
+                            <div id="4"></div>
                         </ul>
                     </div>
                 </div>
@@ -226,6 +247,77 @@
         </div>
     </main>
     
+<script>
+let productname=document.getElementById('1');
+let Quantity=document.getElementById('2');
+let Email=document.getElementById('3');
+let Address=document.getElementById('4');
+let ult=document.getElementById('ult');
+let addproduct=document.getElementById('addproduct');
+let editproduct=document.getElementById('editproduct');
+let deleteproduct=document.getElementById('deleteproduct');
+let cardbody=document.getElementById('desc');
+let ownerp=document.getElementById('ownerpr');
+
+
+
+
+ const getinfo = async (event)=>{
+        
+    try {
+            let url=`http://siddhant:3000/orderdetails`
+            const  response = await fetch(url)
+            const data=await response.json();
+        
+        
+
+          
+            await data.forEach(element=>{
+                        if( '{{radiotype}}' === "Supplier"){
+                               productname.innerText= " Product_Name:"+" "+element.name,
+                                 Quantity.innerText=" Quantity:"+" "+element.quantity,
+                                    Address.innerText= "Address:"+ " "+element.address
+                                    {{!-- Email.innerText=element.email, --}}
+                                    addproduct.style.display="none";
+                                    editproduct.style.display="none";
+                                    deleteproduct.style.display="none";
+cardbody.innerText="Welcome to the inventory management system!  " +
+"Here, you can manage see your received orders from retailers customers";
+ownerp.innerText="Here, you can see products available  from retailers customers:";
+
+"Address                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         "
+
+ button1.appendChild()
+button1.innerHTM="Accept Order";
+var button2=document.createElement("button");
+button2.innerHTML="Reject Order";
+
+
+                       
+
+
+                                                     }
+
+                                                     else if ( '{{radiotype}}' !== "Supplier"){
+                                                        ult.style.display="none";
+                                                       
+                                                     }
+                                                        
+                                                
+    
+        } )
+
+
+        } catch (error) {
+        console.log("please Enter The Valid Things");
+        }
+       
+   
+    
+}
+getinfo();
+</script>
+
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/Xf1N3JW28pVoZ+" crossorigin="anonymous"></script>

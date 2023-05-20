@@ -74,7 +74,7 @@
 
 </form >
     
-    <table style="width: 100%; height: 100%;" id="Table" cell-padding="5px"  border="1"  >
+    <table style="width: 100%; height: 100%;" id="Table" cell-padding="5px"  border="15" border-radius="5252px"  >
       <th id="1" >NAME</th>  
       <th  id="2">PRICE</th>  
       <th  id="3">AVAILABILITY</th>  
@@ -136,7 +136,7 @@
                         tr.appendChild(td1);
                         tr.appendChild(td2);
                         Table2.appendChild(tr);
-                        Table2.style.borderCollapse = "collapse";
+                        Table2.style.borderCollapse ="collapse";
                         Table2.style.backgroundColor = "#008E97  ";
                   
                     });
@@ -148,7 +148,7 @@ const a = document.getElementById("1")
 
             
             try {
-                let url = `http://localhost:3000/ProductData`
+                let url = `http://siddhant:3000/ProductData`
                 const response = await fetch(url)
                 const data = await response.json();
                
@@ -160,7 +160,7 @@ let i=0;
                               
                                
  await data.forEach(element=>{
-                        if(element.available==='{{availablef}}' && element.price>='{{Price}}'){
+                        if(element.available==='{{availablef}}' && element.price >=  Math.floor('{{Price}}')){
                               array[i] = element
                            
                                                    }

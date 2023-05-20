@@ -38,6 +38,9 @@
       background-color: #00aab5;
       border-color: #007279;
     }
+    #flex{
+      display: flex;
+      justify-content: space-between;}
   </style>
 </head>
 <body>
@@ -65,6 +68,23 @@
         <input type="password" class="form-control" id="conf_password" name="conf_password" placeholder="Enter your password">
       
       </div>
+      <div id="flex">
+      <div class="form-group">
+
+        <label for="radiobtn">User</label>
+       
+        <input type="radio"  id="radiobtn" name="radiobtn"  value="User">
+
+        </div>
+        <div>
+          <label for="radiobtn">Supplier</label>
+        <input type="radio" id="radiobtn2" name="radiobtn"  value="Supplier"></div>
+        <div>
+         <label for="radiobtn">Owner</label>
+        <input type="radio"  id="radiobtn3" name="radiobtn"  value="Owner"></div>
+      
+      </div>
+
       <button type="submit" class="btn btn-primary btn-block">Signup</button>
 
       <div id="already_signedin "  >  Already Have An Account  ? <a href="/loginPage">Click Here</a> </div>
